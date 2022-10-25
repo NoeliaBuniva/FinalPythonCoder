@@ -6,9 +6,9 @@ from About.models import Administrador
 # Create your views here.
 
 class ListaPostulantes(View):
-    template_name = "About/lista_de_postulantes.html/"
+    template_name = "About/lista_postu.html"
 
-    def get(self, request):
+    def get(self, request): #mostrar lista de postulantes
         postulantes = Administrador.objects.all()
-        return render(request, self.template_name, {"postulantes":postulantes})
+        return render(request, self.template_name, {"postulantes": postulantes})
 
