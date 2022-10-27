@@ -8,12 +8,15 @@
 </head>
 <body>
     
-    <h1> Lista de postulantes </h1>
-    <ul>
-    {% for postulante in postulantes %}
-        <li>{{postulante}}</li>
-    {% endfor %}
-    </ul>
+    <h1> EDICION DE DATOS DE POSTULANTES </h1>
+
+    <form action="/postulantes/editar/{{pk}}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Actualizar">
+
+    </form>
+    
 
 </body>
 </html>
