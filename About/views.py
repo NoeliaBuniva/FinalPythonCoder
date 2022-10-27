@@ -43,7 +43,7 @@ class EditPostulantes(View):
         return render(request, self.template_name, {"form": form, "pk": pk})
 
     def post(self, request, pk):
-        Administrador = get_object_or_404(Administrador, pk=pk)
+        postulante = get_object_or_404(Administrador, pk=pk)
         form = self.form_class(request.POST, instance=postulante)
         if form.is_valid():
             form.save()
