@@ -51,5 +51,21 @@ class EditPostulantes(View):
         return render(request, self.succsess_template)  
 
 
+# Se carga modulo para la edición de los datos de la BD
+class DeletePostulantes(View):
+    template_name = "About/delete_postulantes.html"
+    succsess_template = "About/exito.html"
+    form_class = AdministradorForm
+    initial = {"nombre":"", "apellido":"", "edad":"", "profesion":""}
+
+    def get(self, request, pk):
+        postulante = get_object_or_404(Administrador, pk = pk)
+        form = self.form_class(instance = postulante)
+        return render(request, self.template_name, {"form": form, "pk": pk})
+
+    def post(self, request, pk):
+        postulante = get_object_or_404(Administrador, pk=pk)
+        postulante.delete()
+        return render(request, self.succsess_template)  
 
 

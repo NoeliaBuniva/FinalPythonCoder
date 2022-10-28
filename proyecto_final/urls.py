@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from About.views import ListaPostulantes, CargarPostulantes, EditPostulantes
+from About.views import ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes
 # from FinalPythonCoder.About.views import EditPostulantes
 
 urlpatterns = [
@@ -24,5 +24,6 @@ urlpatterns = [
     path('postulantes/cargar', CargarPostulantes.as_view()),
     path('postulantes/editar', EditPostulantes.as_view()),
     path('postulantes/editar/<int:pk>', EditPostulantes.as_view()),
+    path('postulantes/delete/<int:pk>', DeletePostulantes.as_view()),
 ]
 
