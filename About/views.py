@@ -51,7 +51,7 @@ class EditPostulantes(View):
         return render(request, self.succsess_template)  
 
 
-# Se carga modulo para la edición de los datos de la BD
+# Se carga modulo para borrar datos de la BD
 class DeletePostulantes(View):
     template_name = "About/delete_postulantes.html"
     succsess_template = "About/exito.html"
