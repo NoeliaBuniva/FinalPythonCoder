@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h1> Lista de postulantes </h1>
-    <ul>
-    {% for postulante in postulantes %}
-        <li>{{postulante}}</li>
-    {% endfor %}
-    </ul>
+{% extends "About/base.html" %}
 
-</body>
-</html>
+{% load static %}
+    
+{% block contenido %}   
+    <h1> Lista de postulantes </h1>
+    {% for postulante in postulantes %}
+       <ul> <li>{{postulante}}</li> </ul>
+    {% endfor %}   
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}   
+    <h1> Lista de postulantes </h1>
+    {% for postulante in Postulantes %}
+       <ul> <li>{{postulante}}</li> </ul>
+       <button>
+        <a href="{% url 'EliminarPostu' postulante.nombre %}"> Eliminar</a> 
+    </button>
+    {% endfor %}
+    <br>
+    <a href="postulantes/cargar">Agregar otro Postulante</a> 
+{% endblock %}
