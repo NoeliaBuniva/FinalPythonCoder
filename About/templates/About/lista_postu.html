@@ -4,7 +4,12 @@
     
 {% block contenido %}   
     <h1> Lista de postulantes </h1>
-    {% for postulante in postulantes %}
-       <ul> <li>{{postulante}}</li> </ul>
-    {% endfor %}   
+    <ul>
+        {% for postulante in postulantes %}
+        <li>{{postulante}}
+            <a href="{% url 'Borrar' postulante.id  %}">Borrar</a>
+            <a href="{% url 'Editar' postulante.id  %}">Actulizar</a>
+        </li>
+    </ul>
+{% endfor %}   
 {% endblock %}
