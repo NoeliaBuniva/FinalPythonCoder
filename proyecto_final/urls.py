@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from About.views import EditPostulantes1, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, inicio, eliminarPostu, ListaPostulantes1
+from About.views import EditPostulantes1, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, inicio, eliminarPostu, ListaPostulantes1, AboutUs
 # from FinalPythonCoder.About.views import EditPostulantes
 
 urlpatterns = [
@@ -33,7 +33,9 @@ urlpatterns = [
     path("postulantes1/", ListaPostulantes1.as_view()), #este es el referido a leer.postu donde se podria usar los botones
     path("postulantes1/postulantes/cargar", CargarPostulantes.as_view()), #este y el de abajo = ruta lista + cargar, editar 
    # path("editarpostu/<int:pk>", EditPostulantes.as_view(), name = "EditarPostu"), #no se q arg deberia recibir para funcionar, no es ni pk ni postunombre
-    path('eliminarpostu/<Postu_nombre>/', eliminarPostu, name="EliminarPostu") #este se aplica solo cuando tocamos el boton de eliminar
+    path('eliminarpostu/<Postu_nombre>/', eliminarPostu, name="EliminarPostu"), #este se aplica solo cuando tocamos el boton de eliminar
+    path("inicio/aboutus", AboutUs, name="Sobre Nosotros"),
 
 ]
+
 

@@ -76,6 +76,8 @@ def index(request): #para ir a la plantilla
 def inicio(request): #todavia nada util jaja
     return render(request, "About/inicio.html")
 
+def AboutUs(request): 
+    return render(request, "About/about_us.html")
 
 def eliminarPostu(request, Postu_nombre):
     Postu = Administrador.objects.get(nombre = Postu_nombre)
@@ -123,3 +125,5 @@ class EditPostulantes1(View):
             form.save()
             form=self.form_class(initial=self.initial)
         return render(request, self.succsess_template)  
+
+

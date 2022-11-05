@@ -4,7 +4,7 @@
     
 {% block contenido %}   
    
-    <h1> CARGA DE POSTULANTES </h1>
+    <h1> REGISTRO DE PROMETEO'S </h1>
 
     <form action="/postulantes/cargar/" method="post">
         {% csrf_token %}
@@ -13,5 +13,5 @@
 
     </form>
     <br>
-    <a href="postulantes/">Volver a la página de inicio</a>    
+    <a href="/inicio">Volver a la página de inicio</a>    
 {% endblock %}    
