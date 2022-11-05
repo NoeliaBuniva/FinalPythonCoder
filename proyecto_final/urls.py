@@ -20,12 +20,15 @@ from About.views import EditPostulantes1, ListaPostulantes, CargarPostulantes, E
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('postulantes/', ListaPostulantes.as_view()),
-    path('postulantes/cargar', CargarPostulantes.as_view(), name = "CargarPostu"), 
+    path('postulantes/', ListaPostulantes.as_view(), name= "Lista"),
+    path('postulantes/editar/postulantes/', ListaPostulantes.as_view()),
+    path('postulantes/delete/postulantes/', ListaPostulantes.as_view()),
+    path('postulantes/cargar/postulantes/', ListaPostulantes.as_view()),
+    path('postulantes/cargar/', CargarPostulantes.as_view(), name = "CargarPostu"), 
     path('postulantes/editar', EditPostulantes.as_view()),
     path('postulantes/editar/<int:pk>', EditPostulantes.as_view(), name = "Editar"),
     path('postulantes/delete/<int:pk>', DeletePostulantes.as_view(), name = "Borrar"),
-    path("inicio/", index), #desde acá agregué yo, este es para la plantilla
+    path("inicio/", index, name="Inicio"), #desde acá agregué yo, este es para la plantilla
     path("página_inicio/", inicio), #este nada
     path("postulantes1/", ListaPostulantes1.as_view()), #este es el referido a leer.postu donde se podria usar los botones
     path("postulantes1/postulantes/cargar", CargarPostulantes.as_view()), #este y el de abajo = ruta lista + cargar, editar 

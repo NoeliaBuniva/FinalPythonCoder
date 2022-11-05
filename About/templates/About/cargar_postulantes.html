@@ -6,10 +6,12 @@
    
     <h1> CARGA DE POSTULANTES </h1>
 
-    <form action="/postulantes/cargar" method="post">
+    <form action="/postulantes/cargar/" method="post">
         {% csrf_token %}
         {{form}}
         <input type="submit" value="Cargar">
 
     </form>
+    <br>
+    <a href="postulantes/">Volver a la página de inicio</a>    
 {% endblock %}    
