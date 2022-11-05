@@ -3,6 +3,12 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from About.models import Administrador
 from About.forms import AdministradorForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
+from About.models import Administrador
+from django.urls import reverse_lazy
 
 
 # Muestra los datos de la BD
@@ -125,5 +131,22 @@ class EditPostulantes1(View):
             form.save()
             form=self.form_class(initial=self.initial)
         return render(request, self.succsess_template)  
+
+@login_required
+def index(request):
+    return render(request, 'About/index.html')
+
+class ListPost(ListView):
+    model=Administrador
+
+class ListPost(LoginRequiredMixin, ListView):
+    model=Administrador
+
+class BlogLogin(LoginView):
+    template_name = 'inicio/login.html'
+    next_page = reverse_lazy("list-post")
+
+class BlogLogout(LogoutView):
+    template_name = 'inicio/logout.html'
 
 

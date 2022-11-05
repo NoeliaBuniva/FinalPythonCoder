@@ -3,6 +3,9 @@
 {% load static %}
     
 {% block contenido %}   
+
+<a href="{% url 'about-logout' %}">Salir</a>
+
     <h1> Lista de Prometeo's </h1>
     <ul>
         {% for postulante in postulantes %}
