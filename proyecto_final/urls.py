@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from About.views import (EditPostulantes1, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, inicio, eliminarPostu, ListaPostulantes1, AboutUs, BlogLogin, 
 BlogLogout)
 # from FinalPythonCoder.About.views import EditPostulantes
@@ -36,8 +36,8 @@ urlpatterns = [
    # path("editarpostu/<int:pk>", EditPostulantes.as_view(), name = "EditarPostu"), #no se q arg deberia recibir para funcionar, no es ni pk ni postunombre
     path('eliminarpostu/<Postu_nombre>/', eliminarPostu, name="EliminarPostu"), #este se aplica solo cuando tocamos el boton de eliminar
     path("inicio/aboutus", AboutUs, name="Sobre Nosotros"),
-    path('login/', BlogLogin.as_view(), name="about-login"),
-    path('logout/', BlogLogout.as_view(), name="about-logout"),
+    path('login/', BlogLogin.as_view(), name="About-login"),
+    path('logout/', BlogLogout.as_view(), name="About-logout"),
 
 ]
 

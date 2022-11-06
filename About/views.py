@@ -76,6 +76,8 @@ class DeletePostulantes(View):
         return render(request, self.succsess_template)  
 
 #desde acá agregue yo 
+
+
 def index(request): #para ir a la plantilla
     return render(request, "About/index.html")
 
@@ -136,17 +138,20 @@ class EditPostulantes1(View):
 def index(request):
     return render(request, 'About/index.html')
 
+@login_required
 class ListPost(ListView):
     model=Administrador
 
+@login_required
 class ListPost(LoginRequiredMixin, ListView):
     model=Administrador
 
+@login_required
 class BlogLogin(LoginView):
-    template_name = 'inicio/login.html'
-    next_page = reverse_lazy("list-post")
+    template_name = 'About/login.html'
+    next_page = reverse_lazy("Inicio")
 
 class BlogLogout(LogoutView):
-    template_name = 'inicio/logout.html'
+    template_name = 'About/logout.html'
 
 
