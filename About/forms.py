@@ -1,8 +1,8 @@
 from django import forms
-from About.models import Administrador
+from About.models import FichaSocio
 
-class AdministradorForm(forms.ModelForm):
+class FichaSocioForm(forms.ModelForm):
     class Meta:
-        model = Administrador
-        fields = ['nombre', 'apellido', 'edad', 'profesion']
+        model = FichaSocio
+        fields = ['nombre', 'apellido', 'edad']
         

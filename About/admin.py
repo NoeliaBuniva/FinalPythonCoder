@@ -1,4 +1,4 @@
 from django.contrib import admin
-from About.models import Administrador
+from About.models import FichaSocio
 
-admin.site.register(Administrador)
+admin.site.register(FichaSocio)
