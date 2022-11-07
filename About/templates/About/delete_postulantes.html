@@ -5,7 +5,7 @@
 {% block contenido %}
         
     <h1> ELIMINAR UN POSTULANTE </h1>
-
+    <br/>
     <form action="/postulantes/delete/{{pk}}" method="post">
         {% csrf_token %}
         {{form}}
