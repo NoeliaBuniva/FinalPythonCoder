@@ -146,7 +146,6 @@ class ListPost(ListView):
 class ListPost(LoginRequiredMixin, ListView):
     model=Administrador
 
-@login_required
 class BlogLogin(LoginView):
     template_name = 'About/login.html'
     next_page = reverse_lazy("Inicio")
