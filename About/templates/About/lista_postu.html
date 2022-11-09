@@ -4,17 +4,17 @@
     
 {% block contenido %}   
 
-<a href="{% url 'About-logout' %}">Salir</a>
+<a href="{% url 'about_logout' %}">Salir</a>
 
     <h1> Lista de Prometeo's </h1>
     <ul>
         {% for postulante in postulantes %}
         <li>{{postulante}}
-            <a href="{% url 'Borrar' postulante.id  %}">Borrar</a>
-            <a href="{% url 'Editar' postulante.id  %}">Actulizar</a>
+            <a href="{% url 'borrar' postulante.id  %}">Borrar</a>
+            <a href="{% url 'editar' postulante.id  %}">Actulizar</a>
         </li>
     </ul>
 {% endfor %}
     <br>
-    <a href="{% url 'CargarPostu' %}">Agregar otro Postulante</a>    
+    <a href="{% url 'cargar_postu' %}">Agregar otro Postulante</a>    
 {% endblock %}
