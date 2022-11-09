@@ -154,8 +154,7 @@ class ListPost(ListView):
 class ListPost(LoginRequiredMixin, ListView):
     model=FichaSocio
 
-@login_required
-class BlogLogin(LoginRequiredMixin, LoginView):
+class BlogLogin(LoginView):
     template_name = 'About/login.html'
     next_page = reverse_lazy("Inicio")
 

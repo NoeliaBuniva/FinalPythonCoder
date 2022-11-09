@@ -38,7 +38,7 @@ urlpatterns = [
    # path("editarpostu/<int:pk>", EditPostulantes.as_view(), name = "EditarPostu"), #no se q arg deberia recibir para funcionar, no es ni pk ni postunombre
     path('eliminarpostu/<Postu_nombre>/', eliminarPostu, name="eliminar_postu"), #este se aplica solo cuando tocamos el boton de eliminar
     path("inicio/aboutus", AboutUs, name="sobre_nosotros"),
-    path('login/', BlogLogin, name="about_login"), # .as_view()
+    path('login/', BlogLogin.as_view(), name="about_login"),
     path('logout/', BlogLogout.as_view(), name="about_logout"),
 
 ]
