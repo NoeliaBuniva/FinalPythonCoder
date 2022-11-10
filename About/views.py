@@ -92,7 +92,7 @@ class DeletePostulantes(View):
 def inicio(request): #todavia nada util jaja
     return render(request, "About/inicio.html")
 
-def AboutUs(request,View): 
+def AboutUs(request): #saco view
     return render(request, "About/about_us.html")
 
 def eliminarPostu(request, Postu_nombre):
