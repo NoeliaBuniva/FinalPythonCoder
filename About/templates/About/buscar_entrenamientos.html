@@ -1,0 +1,15 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<h2>¡Encontrá el entrenamiento perfecto para vos!</h2>
+<form action="busqueda_entrenamientos/" method="post">
+    {% csrf_token %} 
+    {{ form }}
+    <input type="submit" value="Buscar" class="btn btn-success">  
+</form>
+<br>
+<h4 style="color:darkolivegreen">¿Querés crear tu propia rutina? ¡Hacé click acá!</h4>
+<a href="{% url 'CargarRutinas' %}">Crear rutina</a>
+{% endblock %}

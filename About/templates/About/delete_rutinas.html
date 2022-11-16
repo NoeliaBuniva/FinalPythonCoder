@@ -1,0 +1,15 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+        
+    <h1> ELIMINAR UNA RUTINA </h1>
+
+    <form action="/rutinas/delete/{{pk}}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Eliminar">
+
+    </form>
+{% endblock %}   

@@ -1,0 +1,26 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<h2>¡Encontrá el entrenamiento perfecto para vos!</h2>
+<br>
+<h3>Resultado de busqueda rutina para: Core</h3>
+<br>
+<a style= "text-align:right" href="{% url 'Entrenamientos' %}">Filtrar otra rutina</a>
+<br>
+<a style = "color:slateblue;text-align:left">Ejercicios:</a>
+<p> 
+Plancha 1 min
+<br>
+Crunch x5
+</p>
+<br>
+<h2 style="color:darkred"> TIPS y Advertencias </h5>
+    1. Realizar 5 minutos de movilidad articular como entrada en calor, previa a la rutina.
+    <br>
+    2. Comenzar con pesos ligeros hasta acostumbrar al cuerpo y tener buena postura. Completar 4 series de cada ejercicio.
+    <br>
+    3. Realizar 5 minutos de elongación, vuelta a la calma cuando termines la rutina.
+
+{% endblock %}

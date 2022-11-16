@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from About.views import (EditPostulantes1, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, inicio, eliminarPostu, ListaPostulantes1, AboutUs, BlogLogin, 
-BlogLogout)
+from About.views import (DeleteRutinas, EditRutinas, CargarRutinas, ListaRutinas, EditPostulantes1, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, inicio, eliminarPostu, ListaPostulantes1, AboutUs, BlogLogin, 
+BlogLogout, buscarEntrenamientos)
 # from FinalPythonCoder.About.views import EditPostulantes
 
 urlpatterns = [
@@ -38,6 +38,13 @@ urlpatterns = [
     path("inicio/aboutus", AboutUs, name="Sobre Nosotros"),
     path('login/', BlogLogin.as_view(), name="about-login"),
     path('logout/', BlogLogout.as_view(), name="about-logout"),
+    path('busqueda_entrenamientos/', buscarEntrenamientos.as_view(), name = "Entrenamientos"),
+    path('busqueda_entrenamientos/busqueda_entrenamientos/', buscarEntrenamientos.as_view()),
+    path('rutinas/', ListaRutinas.as_view(), name= "Lista Rutinas"),
+    path('rutinas/cargar/', CargarRutinas.as_view(), name = "CargarRutinas"), 
+    path('rutinas/editar/<int:pk>', EditRutinas.as_view(), name = "Editar"),
+    path('rutinas/delete/<int:pk>', DeleteRutinas.as_view(), name = "Borrar"),
+    path("rutinas/editar/inicio/", index, name="Inicio"), 
 
 ]
 

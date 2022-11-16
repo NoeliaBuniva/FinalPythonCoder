@@ -1,6 +1,14 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}   
 <form method="About">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Login</button>
 </form>
-<!-- <a href="">create an account</a> -->
+{% endblock %}
+<!-- <a href="">create an account</a> 
+
+    <input type= "submit" value="Login">-->

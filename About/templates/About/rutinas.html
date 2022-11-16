@@ -1,0 +1,18 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}   
+
+<a href="{% url 'about-logout' %}">Salir</a>
+    <h1> Lista de Rutinas </h1>
+    
+    <ul>
+        {% for rutina in rutinas %}
+        <li>{{rutina}}
+            <a href="{% url 'Borrar' rutina.id  %}">Borrar</a>
+            <a href="{% url 'Editar' rutina.id  %}">Modificar</a>
+        </li>
+    {% endfor %}
+    <a href="inicio/">Volver a la página de inicio</a> 
+{% endblock %}
