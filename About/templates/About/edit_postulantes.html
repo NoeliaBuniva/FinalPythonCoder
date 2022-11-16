@@ -5,7 +5,7 @@
 {% block contenido %}
         
     <h1> EDICIÓN DE DATOS DE POSTULANTES </h1>
-
+    <br/>
     <form action="/postulantes/editar/{{pk}}" method="post">
         {% csrf_token %}
         {{form}}
