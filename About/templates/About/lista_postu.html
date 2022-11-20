@@ -6,7 +6,7 @@
 
 <a href="{% url 'about_logout' %}">Salir</a>
 
-    <h1> Lista de Prometeo's </h1>
+    <h1> ¡Las recetas de la comunidad! </h1>
     <ul>
         {% for postulante in postulantes %}
         <li>{{postulante}}
@@ -16,5 +16,5 @@
     </ul>
 {% endfor %}
     <br>
-    <a href="{% url 'cargar_postu' %}">Registrá tus datos</a>    
+    <a href="{% url 'cargar_postu' %}">¡Crea tu propia receta!</a>    
 {% endblock %}

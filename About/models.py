@@ -9,7 +9,7 @@ class FichaSocio(models.Model):
     imagen01 = models.ImageField(upload_to="photos", null=True, blank=True)
 
     def __str__(self):
-        return f"<id:{self.id} / nombre: {self.nombre} / apellido: {self.apellido} / edad: {self.edad} >"
+        return f"<{self.imagen01}/ nombre: {self.nombre} / apellido: {self.apellido} / edad: {self.edad} >"
 
 
 class entrenamientos(models.Model):
@@ -27,11 +27,9 @@ class entrenamientos(models.Model):
     
     femenino = "F"
     masculino = "M"
-    otro = "O"
     sexo_opciones = [
         (femenino, "Femenino"),
         (masculino, "Masculino"),
-        (otro, "Otro"),
     ]
     sexo = models.CharField(max_length = 2, choices = sexo_opciones) 
 

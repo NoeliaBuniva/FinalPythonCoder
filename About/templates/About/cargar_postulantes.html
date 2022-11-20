@@ -4,12 +4,13 @@
     
 {% block contenido %}   
    
-    <h1> REGISTRO DE PROMETEO'S </h1>
+    <h1> Llegó tu momento </h1>
+    <h3> ¡Ayudanos a ampliar nuestra biblioteca de recetas!</h3>
     <br/>
     <form action="/postulantes/cargar/" method="post">
         {% csrf_token %}
         {{form}}
-        <input type="submit" value="Cargar">
+        <input type="submit" value="Publicar">
 
     </form>
     <br>

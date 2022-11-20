@@ -4,7 +4,7 @@
     
 {% block contenido %}   
 
-<a href="{% url 'about-logout' %}">Salir</a>
+<a href="{% url 'about_logout' %}">Salir</a>
     <h1> Lista de Rutinas </h1>
     
     <ul>
@@ -14,5 +14,5 @@
             <a href="{% url 'Editar' rutina.id  %}">Modificar</a>
         </li>
     {% endfor %}
-    <a href="inicio/">Volver a la página de inicio</a> 
+ 
 {% endblock %}

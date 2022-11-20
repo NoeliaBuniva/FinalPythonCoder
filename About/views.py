@@ -18,10 +18,6 @@ from About.models import FichaSocio, entrenamientos, rutina
 # No se para que es ésto, entrenamientos, rutina
 from this import d
 
-
-
-
-
 def index(request): #para ir a la plantilla
     posteos = FichaSocio.objects.order_by('-date_published').all()
     return render(request, "About/index.html")
@@ -160,15 +156,15 @@ class buscarEntrenamientos(View):
             grupo_muscular = form.cleaned_data["grupo_muscular"] 
             sexo = form.cleaned_data["sexo"] 
             form = self.form_class(initial=self.initial)
-            if sexo == "F" or sexo == "O" and grupo_muscular == "TS":
+            if sexo == "F" and grupo_muscular == "TS":
                 return render(request, 'About/fem_ts.html',  {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "F" or sexo == "O" and grupo_muscular == "TI":
+            elif sexo == "F"  and grupo_muscular == "TI":
                 return render(request, 'About/fem_ti.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "M" or sexo == "O" and grupo_muscular == "TS":
+            elif sexo == "M"  and grupo_muscular == "TS":
                 return render(request, 'About/masc_ts.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "M" or sexo == "O" and grupo_muscular == "TI":
+            elif sexo == "M"  and grupo_muscular == "TI":
                 return render(request, 'About/masc_ti.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "M" or sexo == "O" or sexo == "F" and grupo_muscular == "C":
+            elif sexo == "M" or sexo == "F" and grupo_muscular == "C":
                 return render(request, 'About/core.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
         return render(request, self.template_name, {'form':form})
 

@@ -35,7 +35,6 @@ urlpatterns = [
     path("página_inicio/", inicio), #este nada
     path("postulantes1/", ListaPostulantes1.as_view()), #este es el referido a leer.postu donde se podria usar los botones
     path("postulantes1/postulantes/cargar", CargarPostulantes.as_view()), #este y el de abajo = ruta lista + cargar, editar 
-   # path("editarpostu/<int:pk>", EditPostulantes.as_view(), name = "EditarPostu"), #no se q arg deberia recibir para funcionar, no es ni pk ni postunombre
     path('eliminarpostu/<Postu_nombre>/', eliminarPostu, name="eliminar_postu"), #este se aplica solo cuando tocamos el boton de eliminar
     path("inicio/aboutus", AboutUs, name="sobre_nosotros"),
     path('login/', BlogLogin.as_view(), name="about_login"),
