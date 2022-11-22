@@ -1,19 +1,19 @@
 from this import d
-from django.shortcuts import render, get_object_or_404
-from django.views import View
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View, generic
 from django.http import HttpResponse
-from About.forms import FichaSocioForm, entrenamientos_Form, rutina_Form
+from About.forms import FichaSocioForm, entrenamientos_Form, rutina_Form #, UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.admin import User
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 from About.models import FichaSocio, entrenamientos, rutina
-
 
 # No se para que es ésto, entrenamientos, rutina
 from this import d
@@ -120,7 +120,7 @@ def editarPostu(request, Postu_nombre):
     contexto = {"Postulantes": Postulantes}
     return render(request, "About/leerpostu.html", contexto)
 
-#@login_required
+@login_required
 def index(request):
     return render(request, 'About/index.html')
 
@@ -132,13 +132,13 @@ class ListPost(ListView):
 class ListPost(LoginRequiredMixin, ListView):
     model=FichaSocio
 
-class BlogLogin(LoginView):
-    template_name = 'About/login.html'
-    next_page = reverse_lazy("Inicio")
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
 
-class BlogLogout(LogoutView):
-    template_name = 'About/logout.html'
-
+def home(request):
+    return render(request, "About/home.html")
 
 class buscarEntrenamientos(View):
     form_class = entrenamientos_Form 

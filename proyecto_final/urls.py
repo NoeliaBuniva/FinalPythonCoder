@@ -17,9 +17,9 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from About.views import (DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, inicio, eliminarPostu, ListaPostulantes1, AboutUs, BlogLogin, 
-BlogLogout, buscarEntrenamientos)
-# from FinalPythonCoder.About.views import EditPostulantes
+from About.views import (home, SignUpView, DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, inicio, eliminarPostu, ListaPostulantes1, AboutUs, buscarEntrenamientos) #BlogLogout
+from django.contrib.auth.views import LogoutView
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,15 +37,18 @@ urlpatterns = [
     path("postulantes1/postulantes/cargar", CargarPostulantes.as_view()), #este y el de abajo = ruta lista + cargar, editar 
     path('eliminarpostu/<Postu_nombre>/', eliminarPostu, name="eliminar_postu"), #este se aplica solo cuando tocamos el boton de eliminar
     path("inicio/aboutus", AboutUs, name="sobre_nosotros"),
-    path('login/', BlogLogin.as_view(), name="about_login"),
-    path('logout/', BlogLogout.as_view(), name="about_logout"),
     path('busqueda_entrenamientos/', buscarEntrenamientos.as_view(), name = "Entrenamientos"),
     path('busqueda_entrenamientos/busqueda_entrenamientos/', buscarEntrenamientos.as_view()),
     path('rutinas/', ListaRutinas.as_view(), name= "Lista Rutinas"),
     path('rutinas/cargar/', CargarRutinas.as_view(), name = "CargarRutinas"), 
     path('rutinas/editar/<int:pk>', EditRutinas.as_view(), name = "Editar"),
     path('rutinas/delete/<int:pk>', DeleteRutinas.as_view(), name = "Borrar"),
-    path("rutinas/editar/inicio/", index, name="Inicio"), 
+    path('rutinas/editar/inicio/', index, name="Inicio"), 
+    path('logout/', LogoutView.as_view(template_name='About/logout.html'), name = 'Logout'),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('sesión/', TemplateView.as_view(template_name='About/mensaje_login.html'), name='Sesión iniciada'),
+    path("signup/", SignUpView.as_view(), name="signup"),
+    path('', home, name = "home")
 
 ]
 

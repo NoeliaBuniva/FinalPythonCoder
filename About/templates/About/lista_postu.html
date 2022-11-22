@@ -4,8 +4,6 @@
     
 {% block contenido %}   
 
-<a href="{% url 'about_logout' %}">Salir</a>
-
     <h1> ¡Las recetas de la comunidad! </h1>
     <ul>
         {% for postulante in postulantes %}
@@ -16,5 +14,7 @@
     </ul>
 {% endfor %}
     <br>
-    <a href="{% url 'cargar_postu' %}">¡Crea tu propia receta!</a>    
+    <a href="{% url 'cargar_postu' %}">¡Crea tu propia receta!</a>  
+    <br>
+    <a href="{% url 'inicio' %}">Volver a la página de inicio</a>  
 {% endblock %}
