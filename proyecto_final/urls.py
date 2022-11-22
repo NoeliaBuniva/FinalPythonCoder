@@ -40,7 +40,7 @@ urlpatterns = [
     path('sesión/', TemplateView.as_view(template_name='About/mensaje_login.html'), name='Sesión iniciada'),
     path("signup/", SignUpView.as_view(), name="signup"),
     path('', home, name = "home"),
-    #path('<int:pk>/', horarios_detalle.as_view(), name = "horarios"),
+    path('horarios/', horarios_detalle.as_view(), name = "horarios"),
 
 ]
     

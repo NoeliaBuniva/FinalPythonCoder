@@ -58,30 +58,30 @@ class horarios(models.Model):
     ]
     día = models.CharField(max_length = 5, choices = día_opciones) 
 
-    belgrano = "B"
-    nuñez = "N"
-    palermo = "P"
+    belgrano = "Belgrano"
+    nuñez = "Nuñez"
+    palermo = "Palermo"
     sede_opciones = [
         (belgrano, "Belgrano"),
         (nuñez, "Nuñez"),
         (palermo, "Palermo"),
     ]
-    sede = models.CharField(max_length = 5, choices = sede_opciones) 
+    sede = models.CharField(max_length = 20, choices = sede_opciones) 
 
-    yoga = "Y"
-    meditación = "M"
+    yoga = "Yoga"
+    meditación = "Meditación"
     clase_opciones = [
         (yoga, "Yoga"),
         (meditación, "Meditación")
     ]
-    clase = models.CharField(max_length = 5, choices = clase_opciones)
+    clase = models.CharField(max_length = 20, choices = clase_opciones)
     
     
-    ocho = "8"
-    nueve = "9"
-    diez = "10"
-    once = "11"
-    doce = "12"
+    ocho = "8hs"
+    nueve = "9hs"
+    diez = "10hs"
+    once = "11hs"
+    doce = "12hs"
     horario_opciones = [
         (ocho, "8 hs"),
         (nueve, "9 hs"),
@@ -92,4 +92,4 @@ class horarios(models.Model):
     horario = models.CharField(max_length = 5, choices = horario_opciones)
 
     def __str__(self):
-        return f"<Día: {self.día} / Sede: {self.sede} / Clase: {self.clase} / Horario: {self.horario}>"
+        return f"Día: {self.día} / Sede: {self.sede} / Clase: {self.clase} / Horario: {self.horario}"

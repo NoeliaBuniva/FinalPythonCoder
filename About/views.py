@@ -109,8 +109,13 @@ class SignUpView(generic.CreateView):
 def home(request):
     return render(request, "About/home.html")
 
-class horarios_detalle(View):
+class horarios_detalle(generic.ListView):
     model = horarios
+    template_name = "About/horarios_detalle.html"
+
+    def get(self, request): #mostrar lista de horarios
+        lista_horarios = horarios.objects.all()
+        return render(request, self.template_name, {"horarios": lista_horarios})
 
 class buscarEntrenamientos(View):
     form_class = entrenamientos_Form 
