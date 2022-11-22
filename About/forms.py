@@ -1,6 +1,5 @@
 from django import forms
-from About.models import FichaSocio, entrenamientos, rutina 
-#from About.views import UserCreationForm
+from About.models import FichaSocio, entrenamientos, rutina, horarios
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.admin import User 
 
@@ -28,3 +27,9 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = FichaSocio
         fields = ['nombre', 'email', 'password1', 'password2'] 
+
+class horarios_form(forms.ModelForm):
+    class Meta:
+        model = horarios
+        fields = ['día', 'sede', 'horario', 'clase']
+

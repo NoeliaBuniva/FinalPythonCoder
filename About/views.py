@@ -1,8 +1,6 @@
-from this import d
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View, generic
-from django.http import HttpResponse
-from About.forms import FichaSocioForm, entrenamientos_Form, rutina_Form #, UserRegisterForm
+from About.forms import FichaSocioForm, entrenamientos_Form, rutina_Form 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
@@ -13,10 +11,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
-from About.models import FichaSocio, entrenamientos, rutina
+from About.models import FichaSocio, entrenamientos, rutina, horarios 
 
-# No se para que es ésto, entrenamientos, rutina
-from this import d
 
 def index(request): #para ir a la plantilla
     posteos = FichaSocio.objects.order_by('-date_published').all()
@@ -87,38 +83,11 @@ class DeletePostulantes(View):
         postulante.delete()
         return render(request, self.succsess_template)  
 
+
 #desde acá agregue yo 
 
-
-def inicio(request): #todavia nada util jaja
-    return render(request, "About/inicio.html")
-
-def AboutUs(request): #saco view
+def AboutUs(request): 
     return render(request, "About/about_us.html")
-
-def eliminarPostu(request, Postu_nombre):
-    Postu = FichaSocio.objects.get(nombre = Postu_nombre)
-    Postu.delete()
-
-    Postulantes = FichaSocio.objects.all()
-    contexto = {"Postulantes": Postulantes}
-    return render(request, "About/leerpostu.html", contexto)
-
-class ListaPostulantes1(View): #lo mismo q la principal q habíamos hecho
-    template_name = "About/leerpostu.html"
-
-    def get(self, request): #mostrar lista de postulantes con agregar y eliminar
-        Postulantes = FichaSocio.objects.all()
-        return render(request, self.template_name, {"Postulantes": Postulantes})
-
-
-def editarPostu(request, Postu_nombre):
-    Postu = FichaSocio.objects.get(nombre = Postu_nombre)
-    Postu.Update()
-
-    Postulantes = FichaSocio.objects.all()
-    contexto = {"Postulantes": Postulantes}
-    return render(request, "About/leerpostu.html", contexto)
 
 @login_required
 def index(request):
@@ -139,6 +108,9 @@ class SignUpView(generic.CreateView):
 
 def home(request):
     return render(request, "About/home.html")
+
+class horarios_detalle(View):
+    model = horarios
 
 class buscarEntrenamientos(View):
     form_class = entrenamientos_Form 
@@ -176,8 +148,6 @@ class ListaRutinas(View):
         rutinas = rutina.objects.all()
         return render(request, self.template_name, {"rutinas": rutinas})
     
-
-
 class CargarRutinas(View):
     template_name = "About/cargar_rutinas.html"
     form_class = rutina_Form
@@ -214,7 +184,8 @@ class EditRutinas(View):
         if form.is_valid():
             form.save()
             form=self.form_class(initial=self.initial)
-        return render(request, self.success_template)  
+        return render(request, self.success_template) 
+
 # Se carga modulo para borrar datos de la BD
 class DeleteRutinas(View):
     template_name = "About/delete_rutinas.html"

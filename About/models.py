@@ -13,7 +13,6 @@ class FichaSocio(models.Model):
 
 
 class entrenamientos(models.Model):
-    ejercicios = models.CharField(max_length = 80, default = "no hay rutina todavía")
     tren_superior  = "TS"
     tren_inferior = "TI"
     core = "C"
@@ -34,7 +33,7 @@ class entrenamientos(models.Model):
     sexo = models.CharField(max_length = 2, choices = sexo_opciones) 
 
     def __str__(self):
-        return f"<Grupo muscular: {self.grupo_muscular} / Sexo: {self.sexo} / Ejercicios: {self.ejercicios}>"
+        return f"<Grupo muscular: {self.grupo_muscular} / Sexo: {self.sexo}>"
     
 
 class rutina(models.Model):
@@ -42,3 +41,55 @@ class rutina(models.Model):
 
     def __str__(self):
         return f"<Ejercicios: {self.ejercicios}>"
+
+
+class horarios(models.Model):
+    lunes = "Lun"
+    martes = "Mar"
+    miércoles = "Mier"
+    jueves = "Jue"
+    viernes = "Vier"
+    día_opciones = [
+        (lunes, "Lunes"),
+        (martes, "Martes"),
+        (miércoles, "Miércoles"),
+        (jueves, "Jueves"),
+        (viernes, "Viernes"),
+    ]
+    día = models.CharField(max_length = 5, choices = día_opciones) 
+
+    belgrano = "B"
+    nuñez = "N"
+    palermo = "P"
+    sede_opciones = [
+        (belgrano, "Belgrano"),
+        (nuñez, "Nuñez"),
+        (palermo, "Palermo"),
+    ]
+    sede = models.CharField(max_length = 5, choices = sede_opciones) 
+
+    yoga = "Y"
+    meditación = "M"
+    clase_opciones = [
+        (yoga, "Yoga"),
+        (meditación, "Meditación")
+    ]
+    clase = models.CharField(max_length = 5, choices = clase_opciones)
+    
+    
+    ocho = "8"
+    nueve = "9"
+    diez = "10"
+    once = "11"
+    doce = "12"
+    horario_opciones = [
+        (ocho, "8 hs"),
+        (nueve, "9 hs"),
+        (diez, "10 hs"),
+        (once, "11 hs"),
+        (doce, "12 hs"),
+    ]
+    horario = models.CharField(max_length = 5, choices = horario_opciones)
+
+    def __str__(self):
+        return f"<Día: {self.día} / Sede: {self.sede} / Clase: {self.clase} / Horario: {self.horario}>"

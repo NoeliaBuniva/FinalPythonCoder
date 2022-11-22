@@ -1,0 +1,12 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<form action= "" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Iniciar Sesión</button>
+</form>
+<a href="{% url 'Registro' %}">¿Es tu primera vez? ¡Registrate acá!</a> 
+{% endblock %}
