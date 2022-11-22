@@ -1,5 +1,13 @@
 from django.db import models
 
+class recetas(models.Model):
+    comida = models.CharField(max_length = 200)
+    ingredientes = models.CharField(max_length = 200)
+    preparación = models.TextField(max_length=2000)
+    fecha = models.DateTimeField(auto_now_add=True)
+    receta_imagen = models.ImageField(upload_to='images/')
+
+
 class FichaSocio(models.Model):
     nombre = models.CharField(max_length = 30)
     apellido = models.CharField(max_length = 20)
@@ -43,12 +51,12 @@ class rutina(models.Model):
         return f"<Ejercicios: {self.ejercicios}>"
 
 
-class horarios(models.Model):
-    lunes = "Lun"
-    martes = "Mar"
-    miércoles = "Mier"
-    jueves = "Jue"
-    viernes = "Vier"
+class horarios(models.Model): 
+    lunes = "Lunes"
+    martes = "Martes"
+    miércoles = "Miércoles"
+    jueves = "Jueves"
+    viernes = "Viernes"
     día_opciones = [
         (lunes, "Lunes"),
         (martes, "Martes"),
@@ -56,7 +64,7 @@ class horarios(models.Model):
         (jueves, "Jueves"),
         (viernes, "Viernes"),
     ]
-    día = models.CharField(max_length = 5, choices = día_opciones) 
+    día = models.CharField(max_length = 10, choices = día_opciones) 
 
     belgrano = "Belgrano"
     nuñez = "Nuñez"

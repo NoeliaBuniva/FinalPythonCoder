@@ -17,9 +17,11 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from About.views import (horarios_detalle, home, SignUpView, DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, AboutUs, buscarEntrenamientos) 
+from About.views import (descripción_h, horarios_detalle, home, SignUpView, DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, AboutUs, buscarEntrenamientos) 
 from django.contrib.auth.views import LogoutView
 from django.views.generic.base import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,7 +43,13 @@ urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
     path('', home, name = "home"),
     path('horarios/', horarios_detalle.as_view(), name = "horarios"),
+    path(r'^(?P<pk>\d+)$', descripción_h.as_view(), name = 'Descripción'),
+    #path('<int:id>/', descripción_h.as_view, name = 'Descripción'),
 
 ]
     
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

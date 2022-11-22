@@ -1,5 +1,5 @@
 from django import forms
-from About.models import FichaSocio, entrenamientos, rutina, horarios
+from About.models import FichaSocio, entrenamientos, rutina, horarios, recetas
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.admin import User 
 
@@ -33,3 +33,8 @@ class horarios_form(forms.ModelForm):
         model = horarios
         fields = ['día', 'sede', 'horario', 'clase']
 
+
+class recetas_form(forms.ModelForm):
+    class Meta:
+        model = recetas
+        fields = ['comida', 'ingredientes', 'preparación', 'receta_imagen']

@@ -117,6 +117,11 @@ class horarios_detalle(generic.ListView):
         lista_horarios = horarios.objects.all()
         return render(request, self.template_name, {"horarios": lista_horarios})
 
+class descripción_h(DetailView):
+    model = horarios
+    template_name = "About/descripción.html"
+    
+    
 class buscarEntrenamientos(View):
     form_class = entrenamientos_Form 
     template_name = 'About/buscar_entrenamientos.html'

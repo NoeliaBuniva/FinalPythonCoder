@@ -5,12 +5,10 @@
 {% block contenido %}
 <h2 style="text-align:center">¡Encontrá el horario perfecto para vos!</h2>
 <br>
-<ul>
-    {% for instance in horarios %}
-        <li>{{instance.día}} - <a href="{{instance.get_absolute_url}}">{{instance.clase}}</a></li>
-        <a href="{% url 'Descripción' instance.id %}">Detalles</a>
-   {% endfor %}
-</ul>
+<li style="color:crimson">Sede: <p style="color:black">{{object.sede}}</p></li>
+<li style="color:crimson">Hora: <p style="color:black">{{object.horario}}</p></li>
+<a href="{% url 'horarios' %}">Atrás</a>
+
 <br>
 
 <h2 style="color:darkred"> ¡Aclaración! </h5>
