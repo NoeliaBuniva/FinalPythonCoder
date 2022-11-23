@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from About.views import (descripción_r, recetas_lista, success, Receta_Imagen, descripción_h, horarios_detalle, home, SignUpView, DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, EditRecetas, DeleteRecetas, index, AboutUs, buscarEntrenamientos) 
+from About.views import (message, profile, ChangePasswordView, descripción_r, recetas_lista, success, Receta_Imagen, descripción_h, horarios_detalle, home, SignUpView, DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, EditRecetas, DeleteRecetas, index, AboutUs, buscarEntrenamientos) 
 from django.contrib.auth.views import LogoutView
 from django.views.generic.base import TemplateView
 from django.conf import settings
@@ -47,6 +47,9 @@ urlpatterns = [
     path('hecho', success, name = 'hecho'),
     path('lista_recetas', recetas_lista.as_view(), name = 'listaRecetas'),
     path(r'^receta/(?P<pk>\d+)$', descripción_r.as_view(), name = 'Descripción_r'),
+    path('password-change/', ChangePasswordView.as_view(), name='cambio_contraseña'),
+    path('editar_perfil/', profile, name='Login'),
+    path('message/', message, name='modificado'),
 
 ]
     

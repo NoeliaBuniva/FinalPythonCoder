@@ -1,7 +1,15 @@
 from django import forms
 from About.models import entrenamientos, rutina, horarios, recetas
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(max_length=100,
+                               required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
+    class Meta:
+        model = User
+        fields = ['username']
         
 class entrenamientos_Form(forms.ModelForm):
     class Meta:
