@@ -7,6 +7,8 @@ class recetas(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     receta_imagen = models.ImageField(upload_to='images/')
 
+    def __str__(self):
+        return f"Receta de: {self.comida}"
 
 class FichaSocio(models.Model):
     nombre = models.CharField(max_length = 30)

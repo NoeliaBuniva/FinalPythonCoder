@@ -1,0 +1,11 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<h3> 
+    Se ha publicado correctamente la receta, ¡Gracias!
+</h3>
+<br>
+<a href="{% url 'lista' %}">Atrás</a>    
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View, generic
-from About.forms import FichaSocioForm, entrenamientos_Form, rutina_Form 
+from About.forms import FichaSocioForm, entrenamientos_Form, rutina_Form, recetas_form 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
@@ -11,13 +11,12 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
-from About.models import FichaSocio, entrenamientos, rutina, horarios 
-
+from About.models import FichaSocio, entrenamientos, rutina, horarios, recetas
+from django.http import HttpResponse
 
 def index(request): #para ir a la plantilla
     posteos = FichaSocio.objects.order_by('-date_published').all()
     return render(request, "About/index.html")
-
 
 # Muestra los datos de la BD
 class ListaPostulantes(View):
@@ -121,7 +120,37 @@ class descripción_h(DetailView):
     model = horarios
     template_name = "About/descripción.html"
     
-    
+
+class Receta_Imagen(View):
+    template_name = "About/recetas.html"
+    form_class = recetas_form
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('hecho') 
+        return render(request, self.template_name, {'form':form})
+
+def success(request):
+    return render(request, "About/hecho.html")
+
+class recetas_lista(generic.ListView):
+    model = recetas
+    template_name = "About/recetas_lista.html"
+
+    def get(self, request): #mostrar lista de recetas
+        lista_recetas = recetas.objects.all()
+        return render(request, self.template_name, {"recetas": lista_recetas})
+
+class descripción_r(DetailView):
+    model = recetas
+    template_name = "About/descripción_r.html"
+
 class buscarEntrenamientos(View):
     form_class = entrenamientos_Form 
     template_name = 'About/buscar_entrenamientos.html'

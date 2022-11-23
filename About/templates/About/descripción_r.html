@@ -1,0 +1,15 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<h2 style="text-align:center">¡Seguí el paso a paso y gozá!</h2>
+<br>
+<li style="color:crimson">Ingredientes: <p style="color:black">{{object.ingredientes}}</p></li>
+<li style="color:crimson">Preparación: <p style="color:black">{{object.preparación}}</p></li>
+<a href="{% url 'listaRecetas' %}">Atrás</a>
+
+<br>
+
+<a href="{% url 'inicio' %}">Volver a la página de inicio</a> 
+{% endblock %}

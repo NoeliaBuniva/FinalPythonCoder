@@ -1,0 +1,14 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+    {% for receta in recetas %}
+            <div class="col-md-4">
+                    <li>{{receta.fecha}} - <a href="{{receta.get_absolute_url}}">{{receta.comida}}</a></li>
+                    <img src="{{ receta.receta_imagen.url}}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+                    <a href="{% url 'Descripción_r' receta.id %}">Detalles</a>  
+            </div>
+    {% endfor %}
+<a href="{% url 'inicio' %}">Volver a la página de inicio</a>
+{% endblock %}
