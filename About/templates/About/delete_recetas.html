@@ -4,12 +4,13 @@
     
 {% block contenido %}
         
-    <h1> EDICIÓN DE DATOS DE POSTULANTES </h1>
-    <br/>
-    <form action="/postulantes/editar/{{pk}}" method="post">
+<h1> Eliminar receta </h1>
+<br>
+    <form action="/recetas/delete/{{pk}}" method="post">
         {% csrf_token %}
         {{form}}
-        <input type="submit" value="Actualizar">
+        <input type="submit" value="Eliminar">
     </form>
+    <br>
     <a href="{% url 'inicio' %}">Volver a la página de inicio</a> 
 {% endblock %}    

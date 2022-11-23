@@ -17,18 +17,17 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from About.views import (descripción_r, recetas_lista, success, Receta_Imagen, descripción_h, horarios_detalle, home, SignUpView, DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, ListaPostulantes, CargarPostulantes, EditPostulantes, DeletePostulantes, index, AboutUs, buscarEntrenamientos) 
+from About.views import (descripción_r, recetas_lista, success, Receta_Imagen, descripción_h, horarios_detalle, home, SignUpView, DeleteRutinas, CargarRutinas, ListaRutinas, EditRutinas, EditRecetas, DeleteRecetas, index, AboutUs, buscarEntrenamientos) 
 from django.contrib.auth.views import LogoutView
 from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('postulantes/', ListaPostulantes.as_view(), name= "lista"),
-    path('postulantes/cargar/', CargarPostulantes.as_view(), name = "cargar_postu"), 
-    path('postulantes/editar/<int:pk>', EditPostulantes.as_view(), name = "editar"),
-    path('postulantes/delete/<int:pk>', DeletePostulantes.as_view(), name = "borrar"),
+    path('recetas/editar/<int:pk>', EditRecetas.as_view(), name = "editar"),
+    path('recetas/delete/<int:pk>', DeleteRecetas.as_view(), name = "borrar"),
     path("inicio/", index, name="inicio"),
     path("inicio/aboutus", AboutUs, name="sobre_nosotros"),
     path('busqueda_entrenamientos/', buscarEntrenamientos.as_view(), name = "Entrenamientos"),
