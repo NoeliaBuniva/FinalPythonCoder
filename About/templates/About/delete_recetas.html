@@ -4,12 +4,13 @@
     
 {% block contenido %}
         
-    <h1> ELIMINAR UN POSTULANTE </h1>
-    <br/>
-    <form action="/postulantes/delete/{{pk}}" method="post">
+<h1> Eliminar receta </h1>
+<br>
+    <form action="/recetas/delete/{{pk}}" method="post">
         {% csrf_token %}
         {{form}}
         <input type="submit" value="Eliminar">
-
     </form>
+    <br>
+    <a href="{% url 'inicio' %}">Volver a la página de inicio</a> 
 {% endblock %}    

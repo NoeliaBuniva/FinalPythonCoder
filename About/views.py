@@ -1,148 +1,133 @@
-from this import d
-from django.shortcuts import render, get_object_or_404
-from django.views import View
-from django.http import HttpResponse
-from About.forms import FichaSocioForm, entrenamientos_Form, rutina_Form
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View, generic
+from About.forms import UpdateUserForm, entrenamientos_Form, rutina_Form, recetas_form 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.admin import User
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.forms import UserCreationForm 
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
-from About.models import FichaSocio, entrenamientos, rutina
+from django.views.generic import DetailView
+from About.models import rutina, horarios, recetas
+from django.contrib.auth.views import PasswordChangeView
 
-
-# No se para que es ésto, entrenamientos, rutina
-from this import d
-
-
-
-
-
-def index(request): #para ir a la plantilla
-    posteos = FichaSocio.objects.order_by('-date_published').all()
-    return render(request, "About/index.html")
-
-
-# Muestra los datos de la BD
-class ListaPostulantes(View):
-    template_name = "About/lista_postu.html"
-
-    def get(self, request): #mostrar lista de postulantes
-        postulantes = FichaSocio.objects.all()
-        return render(request, self.template_name, {"postulantes": postulantes})
-
-# Se carga módulo para agregar datos a la BD
-class CargarPostulantes(View):
-    template_name = "About/cargar_postulantes.html"
-    form_class = FichaSocioForm
-    initial = {"nombre":""}
-
-    def get(self, request):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {"form": form})
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            form.save()
-            form=self.form_class(initial=self.initial)
-        return render(request, self.template_name, {"form": form})  
 
 
 # Se carga modulo para la edición de los datos de la BD
-class EditPostulantes(View):
-    template_name = "About/edit_postulantes.html"
-    succsess_template = "About/exito.html"
-    form_class = FichaSocioForm
-    initial = {"nombre":"", "apellido":"", "edad":"", "descripcion":"", "imagen01":""}
+class EditRecetas(View):
+    template_name = "About/edit_recetas.html"
+    success_template = "About/exito.html"
+    form_class = recetas_form
+    initial = {"comida":"", "ingredientes":"", "preparación":"", "receta_imagen":""}
 
     def get(self, request, pk):
-        postulante = get_object_or_404(FichaSocio, pk = pk)
-        form = self.form_class(instance = postulante)
+        receta = get_object_or_404(recetas, pk = pk)
+        form = self.form_class(instance = receta)
         return render(request, self.template_name, {"form": form, "pk": pk})
 
     def post(self, request, pk):
-        postulante = get_object_or_404(FichaSocio, pk=pk)
-        form = self.form_class(request.POST, instance=postulante)
+        receta = get_object_or_404(recetas, pk=pk)
+        receta_objetos = recetas.objects.all()
+        form = self.form_class(request.POST, request.FILES, instance=receta)
         if form.is_valid():
             form.save()
             form=self.form_class(initial=self.initial)
-        return render(request, self.succsess_template)  
+        return render(request, self.success_template, {"receta_objetos": receta_objetos})  
 
 
 # Se carga modulo para borrar datos de la BD
-class DeletePostulantes(View):
-    template_name = "About/delete_postulantes.html"
-    succsess_template = "About/exito.html"
-    form_class = FichaSocioForm
-    initial = {"nombre":"", "apellido":"", "edad":""}
+class DeleteRecetas(View):
+    template_name = "About/delete_recetas.html"
+    success_template = "About/exito.html"
+    form_class = recetas_form
+    initial = {"comida":""}
 
     def get(self, request, pk):
-        postulante = get_object_or_404(FichaSocio, pk = pk)
-        form = self.form_class(instance = postulante)
+        receta = get_object_or_404(recetas, pk = pk)
+        form = self.form_class(instance = receta)
         return render(request, self.template_name, {"form": form, "pk": pk})
 
     def post(self, request, pk):
-        postulante = get_object_or_404(FichaSocio, pk=pk)
-        postulante.delete()
-        return render(request, self.succsess_template)  
-
-#desde acá agregue yo 
+        receta = get_object_or_404(recetas, pk=pk)
+        receta.delete()
+        return render(request, self.success_template)  
 
 
-def inicio(request): #todavia nada util jaja
-    return render(request, "About/inicio.html")
-
-def AboutUs(request): #saco view
+def AboutUs(request): 
     return render(request, "About/about_us.html")
 
-def eliminarPostu(request, Postu_nombre):
-    Postu = FichaSocio.objects.get(nombre = Postu_nombre)
-    Postu.delete()
-
-    Postulantes = FichaSocio.objects.all()
-    contexto = {"Postulantes": Postulantes}
-    return render(request, "About/leerpostu.html", contexto)
-
-class ListaPostulantes1(View): #lo mismo q la principal q habíamos hecho
-    template_name = "About/leerpostu.html"
-
-    def get(self, request): #mostrar lista de postulantes con agregar y eliminar
-        Postulantes = FichaSocio.objects.all()
-        return render(request, self.template_name, {"Postulantes": Postulantes})
-
-
-def editarPostu(request, Postu_nombre):
-    Postu = FichaSocio.objects.get(nombre = Postu_nombre)
-    Postu.Update()
-
-    Postulantes = FichaSocio.objects.all()
-    contexto = {"Postulantes": Postulantes}
-    return render(request, "About/leerpostu.html", contexto)
-
-#@login_required
+@login_required
 def index(request):
     return render(request, 'About/index.html')
 
-@login_required
-class ListPost(ListView):
-    model=FichaSocio
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
 
 @login_required
-class ListPost(LoginRequiredMixin, ListView):
-    model=FichaSocio
+def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        
+        if user_form.is_valid():
+            user_form.save()
+            return render(request, 'registration/message.html', {'user_form': user_form})
+        
+    else:
+        user_form = UpdateUserForm(instance=request.user)
 
-class BlogLogin(LoginView):
-    template_name = 'About/login.html'
-    next_page = reverse_lazy("Inicio")
+    return render(request, 'registration/profile.html', {'user_form': user_form})
 
-class BlogLogout(LogoutView):
-    template_name = 'About/logout.html'
+class ChangePasswordView(PasswordChangeView):
+    template_name = 'registration/change_password.html'
+    success_url = reverse_lazy('modificado')
 
+def message(request):
+    return render(request, "registration/message.html")
+
+def home(request):
+    return render(request, "About/home.html")
+
+class horarios_detalle(generic.ListView):
+    model = horarios
+    template_name = "About/horarios_detalle.html"
+
+    def get(self, request): #mostrar lista de horarios
+        lista_horarios = horarios.objects.all()
+        return render(request, self.template_name, {"horarios": lista_horarios})
+
+class descripción_h(DetailView):
+    model = horarios
+    template_name = "About/descripción.html"
+    
+
+class Receta_Imagen(View):
+    template_name = "About/recetas.html"
+    form_class = recetas_form
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('hecho') 
+        return render(request, self.template_name, {'form':form})
+
+def success(request):
+    return render(request, "About/hecho.html")
+
+class recetas_lista(generic.ListView):
+    model = recetas
+    template_name = "About/recetas_lista.html"
+
+    def get(self, request): #mostrar lista de recetas
+        lista_recetas = recetas.objects.all()
+        return render(request, self.template_name, {"recetas": lista_recetas})
+
+class descripción_r(DetailView):
+    model = recetas
+    template_name = "About/descripción_r.html"
 
 class buscarEntrenamientos(View):
     form_class = entrenamientos_Form 
@@ -160,15 +145,15 @@ class buscarEntrenamientos(View):
             grupo_muscular = form.cleaned_data["grupo_muscular"] 
             sexo = form.cleaned_data["sexo"] 
             form = self.form_class(initial=self.initial)
-            if sexo == "F" or sexo == "O" and grupo_muscular == "TS":
+            if sexo == "F" and grupo_muscular == "TS":
                 return render(request, 'About/fem_ts.html',  {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "F" or sexo == "O" and grupo_muscular == "TI":
+            elif sexo == "F"  and grupo_muscular == "TI":
                 return render(request, 'About/fem_ti.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "M" or sexo == "O" and grupo_muscular == "TS":
+            elif sexo == "M"  and grupo_muscular == "TS":
                 return render(request, 'About/masc_ts.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "M" or sexo == "O" and grupo_muscular == "TI":
+            elif sexo == "M"  and grupo_muscular == "TI":
                 return render(request, 'About/masc_ti.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
-            elif sexo == "M" or sexo == "O" or sexo == "F" and grupo_muscular == "C":
+            elif sexo == "M" or sexo == "F" and grupo_muscular == "C":
                 return render(request, 'About/core.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
         return render(request, self.template_name, {'form':form})
 
@@ -180,8 +165,6 @@ class ListaRutinas(View):
         rutinas = rutina.objects.all()
         return render(request, self.template_name, {"rutinas": rutinas})
     
-
-
 class CargarRutinas(View):
     template_name = "About/cargar_rutinas.html"
     form_class = rutina_Form
@@ -218,7 +201,8 @@ class EditRutinas(View):
         if form.is_valid():
             form.save()
             form=self.form_class(initial=self.initial)
-        return render(request, self.success_template)  
+        return render(request, self.success_template) 
+
 # Se carga modulo para borrar datos de la BD
 class DeleteRutinas(View):
     template_name = "About/delete_rutinas.html"

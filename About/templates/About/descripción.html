@@ -1,0 +1,18 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<h2 style="text-align:center">¡Encontrá el horario perfecto para vos!</h2>
+<br>
+<li style="color:crimson">Sede: <p style="color:black">{{object.sede}}</p></li>
+<li style="color:crimson">Hora: <p style="color:black">{{object.horario}}</p></li>
+<a href="{% url 'horarios' %}">Atrás</a>
+
+<br>
+
+<h2 style="color:darkred"> ¡Aclaración! </h5>
+    Los cupos son ilimitados, te recomendamos igualmente asistir temprano para conseguir los materiales necesarios
+<br>
+<a href="{% url 'inicio' %}">Volver a la página de inicio</a> 
+{% endblock %}

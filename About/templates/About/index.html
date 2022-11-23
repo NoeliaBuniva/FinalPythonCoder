@@ -26,12 +26,11 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
 
                 </div>
-                    <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
-                    <a class="navbar-brand" href="{% url 'lista' %}">Prometeo's</a>
-                    <a class="navbar-brand" href="{% url 'cargar_postu' %}">Registrate</a>   
-                    <a class="navbar-brand" href="{% url 'sobre_nosotros' %}">Sobre Nosotros</a>  
-                    <a class="navbar-brand" href="{% url 'Entrenamientos' %}">Entrenamientos</a>  
-                    <a class="navbar-brand" href="{% url 'Lista Rutinas' %}">Tus propias rutinas</a> 
+                    <a class="navbar-brand" href="{% url 'listaRecetas' %}">Recetario</a>
+                    <a class="navbar-brand" href="{% url 'sobre_nosotros' %}"> Nosotros</a>  
+                    <a class="navbar-brand" href="{% url 'Entrenamientos' %}">Entrenamientos</a>   
+                    <a class="navbar-brand" href="{% url 'Login' %}">Editar Perfil</a>
+                    <a href="{% url 'Logout' %}">Cerrar Sesión</a>
                 </div>
 
             </div>
@@ -66,7 +65,7 @@
                             <i class="fas fa-list fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Planes de Alimentación</h4>
-                        <p class="text-muted">El entrenamiento viene acompañado de una equilibrada alimentación, por eso nosotros te programamos un menú semanal para que vos puedas alcanzar tu mejor versión. Aprenderás a alimentarte de manera consciente y sin contradicciones. Es más, ofrecemos un sector donde podes armar tus propias comidas y recetas, compartirlas con la comunidad y a su vez nutrirte de las ideas de los demás! ¡Todo desde nuestra página!</p>
+                        <p class="text-muted">El entrenamiento viene acompañado de una equilibrada alimentación, por eso nosotros te ofrecemos recetas fáciles, ricas y rápidas para que puedas alcanzar tu mejor versión.  Es más, ofrecemos un sector donde podes armar tus propias recetas y publicarlas. ¡Todo desde nuestra página!</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -74,7 +73,8 @@
                             <i class="fas fa-face-smile fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Salud Mental</h4>
-                        <p class="text-muted">Contamos con profesionales en prácticas de yoga y meditación para que tu recorrido con nosotros sea aún mejor. ¡Tan solo ingresá tus datos e inscribite en el horario que prefieras!</p>
+                        <p class="text-muted">Contamos con profesionales en prácticas de yoga y meditación para que tu recorrido con nosotros sea aún mejor.</p>
+                        <a href="{% url 'horarios' %}">Ver horarios</a> 
                     </div>
                 </div>
             </div>

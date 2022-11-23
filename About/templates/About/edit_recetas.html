@@ -4,12 +4,14 @@
     
 {% block contenido %}
         
-    <h1> EDICIÓN DE DATOS DE POSTULANTES </h1>
-    <br/>
-    <form action="/postulantes/editar/{{pk}}" method="post">
+    <h1> Editá tu receta  </h1>
+    <br>
+
+    <form action="/recetas/editar/{{pk}}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form}}
         <input type="submit" value="Actualizar">
-
     </form>
+
+    <a href="{% url 'inicio' %}">Volver a la página de inicio</a> 
 {% endblock %}    

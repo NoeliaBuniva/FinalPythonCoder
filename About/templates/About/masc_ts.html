@@ -1,3 +1,6 @@
+{% extends "About/base.html" %}
+
+{% load static %}
 {% block contenido %}
 <h2>¡Encontrá el entrenamiento perfecto para vos!</h2>
 <br>
@@ -18,4 +21,6 @@ Jalón al pecho x 10
     2. Comenzar con pesos ligeros hasta acostumbrar al cuerpo y tener buena postura. Completar 4 series de cada ejercicio.
     <br>
     3. Realizar 5 minutos de elongación, vuelta a la calma cuando termines la rutina.
+<br>
+<a href="{% url 'inicio' %}">Volver a la página de inicio</a> 
 {% endblock %}

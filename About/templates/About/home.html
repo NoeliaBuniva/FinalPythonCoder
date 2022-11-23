@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "About/base.html" %}
 
-    <head>
-        {% load static %}
+{% load static %}
+    
+{% block contenido %}
+    <head>       
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -16,25 +17,14 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static "About/css/styles.css" %}" rel="stylesheet" />
+        <link href="{% static '/About/css/styles.css' %}" rel="stylesheet" />
     </head>
-
-<body>
-    <h1 style="background-color: grey; color: antiquewhite; text-align: center"> Prometeo </h1>
-    
-   
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <header class="masthead">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars ms-1"></i>
-            </button>
+            <div class="masthead-subheading">Estás a punto de conocer el espacio que tanto necesitabas, ¿Buscás una vida más saludable?</div>
+            <br>
+            <a href="{% url 'Sesión iniciada' %}">¡Comenzar!</a> 
         </div>
-    </nav>
-    {% block contenido %}
-    
-    {% endblock %}
-    <h3 style="color:blueviolet; text-align:right"> <br><br/>¡Gracias por Elegirnos! </h3>
-</body>
+    </header>
 
-</html>
+{% endblock %}

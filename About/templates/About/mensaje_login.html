@@ -1,0 +1,17 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+{% if user.is_authenticated %}
+  ¡Que bueno verte de nuevo {{ user.username }}!
+  <p>Para ingresar a la página Clickeá<a href="{% url 'inicio' %}"> acá </a></p>
+  <br>
+  <p>¿Eres otro usuario? Para ingresar correctamente Clickeá<a href="{% url 'login' %}"> acá </a></p>
+  
+{% else %}
+  <p>No has iniciado sesión aún</p>
+  <p>Para iniciar sesión Clickeá<a href="{% url 'login' %}"> acá </a></p>
+{% endif %}  
+ 
+{% endblock %}

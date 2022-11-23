@@ -1,0 +1,16 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<h2 style="text-align:center">¡Qué delicia, Nutrite!</h2>
+<h5 style="background-color:cadetblue; color: antiquewhite; text-align:center"> ¡Ayudanos a ampliar nuestra biblioteca de recetas!</h5>
+<br>
+<form method = "post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Publicar" class="btn btn-success">
+</form>
+<br>
+<a href="{% url 'inicio' %}">Volver a la página de inicio</a> 
+{% endblock %}

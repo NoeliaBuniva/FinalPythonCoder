@@ -1,2 +1,10 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
 <h1>Logout del Blog</h1>
-<a href="{% url 'index-Inicio' %}">Volver a Inicio</a>
+<br>
+<h3> Cerraste tu sesión, esperamos verte pronto nuevamente!</h3>
+<a href="{% url 'login' %}">Iniciar sesión</a> 
+{% endblock %}

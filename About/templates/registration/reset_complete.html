@@ -1,0 +1,8 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+<h3>¡Excelente, la contraseña ha sido actualizada!</h3>
+  <p><a href="{% url 'sesión' %}">¿Deseas Iniciar sesión nuevamente?</a></p>
+{% endblock %}
