@@ -22,7 +22,7 @@ class rutina_Form(forms.ModelForm):
         fields = ['ejercicios']
     
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+    username = forms.CharField(max_length=100)
     password1 = forms.CharField(label='Introduzca una contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repita la contraseña', widget=forms.PasswordInput)
     

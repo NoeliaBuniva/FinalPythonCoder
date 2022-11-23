@@ -1,0 +1,9 @@
+{% extends "About/base.html" %}
+
+{% load static %}
+    
+{% block contenido %}
+Alguien ha solicitado para resetear la contraseña perteneciente al email {{email}}.
+Sigue el siguiente link:
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endblock %}

@@ -6,9 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from About.models import rutina, horarios, recetas
-from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib.messages.views import SuccessMessageMixin
+
 
 
 # Se carga modulo para la edición de los datos de la BD
@@ -62,20 +61,6 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
-
-#@login_required
-#class profile(View):
-
-   # def get(self, request):
-     #   user_form = UpdateUserForm(instance=request.user)   
-     #   return render(request, 'registration/profile.html', {'user_form': user_form})
-
-    #def post(self, request):
-      #  user_form = UpdateUserForm(request.POST, instance=request.user)
-       # if user_form.is_valid():
-        #    user_form.save()
-         #   messages.success(request, '¡Tu perfil se ha actualizado correctamente!')
-          #  return redirect(to='users-profile')
 
 @login_required
 def profile(request):
