@@ -157,14 +157,14 @@ class buscarEntrenamientos(View):
                 return render(request, 'About/core.html', {"form": form, "grupo muscular": grupo_muscular, "sexo": sexo})
         return render(request, self.template_name, {'form':form})
 
-
 class ListaRutinas(View):
     template_name = "About/rutinas.html"
 
     def get(self, request): #mostrar lista de rutinas
         rutinas = rutina.objects.all()
         return render(request, self.template_name, {"rutinas": rutinas})
-    
+
+   
 class CargarRutinas(View):
     template_name = "About/cargar_rutinas.html"
     form_class = rutina_Form
